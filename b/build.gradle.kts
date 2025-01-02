@@ -19,7 +19,7 @@ tasks {
             require(gradle.startParameter.isWriteDependencyLocks)
         }
         doLast {
-            configurations.forEach { it.resolve() }
+            configurations.filter { it.isCanBeResolved}.forEach { it.resolve() }
         }
     }
 }
