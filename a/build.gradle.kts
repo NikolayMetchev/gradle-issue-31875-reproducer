@@ -19,22 +19,7 @@ tasks {
             require(gradle.startParameter.isWriteDependencyLocks)
         }
         doLast {
-            configurations
-                .filter {
-                    // Add any custom filtering on the configurations to be resolved
-                    (
-                            it.name !in
-                                    listOf(
-                                        "projectHealthClasspath",
-                                        "resolvedDepsClasspath",
-                                        "testDependencySources",
-                                        "dependencySources",
-                                        "kotlinNativeBundleConfiguration",
-                                        "combinedGraphClasspath",
-                                    )
-                            ) &&
-                            it.isCanBeResolved
-                }.forEach { it.resolve() }
+            configurations.forEach { it.resolve() }
         }
     }
 }
